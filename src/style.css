@@ -1,0 +1,72 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+a {
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+@keyframes pokemon-card {
+  0% {
+    scale: 0%;
+  }
+  50% {
+    scale: 105%;
+  }
+  100% {
+    scale: 100%;
+  }
+}
+.pokemon-card {
+  animation: pokemon-card 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.pokemon-card:hover{
+  scale: 1.05;
+}
+.pokemon-card--image {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  padding-top: 2px;
+}
+.pokemon-evolution-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1;
+}
+.pokemon-evolution-card:hover {
+  box-shadow: 3;
+  scale: 1.05;
+}
