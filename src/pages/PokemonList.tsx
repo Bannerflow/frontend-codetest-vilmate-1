@@ -57,14 +57,15 @@ export default function PokemonList() {
               key={p.name}
               sx={{
                 boxShadow: 1,
-              }}>
+              }}
+            >
               <Card
                 className="pokemon-card"
                 component={Link}
                 to={`/pokemon/${p.id}`}
               >
                 <CardMedia
-                className="pokemon-card--image"
+                  className="pokemon-card--image"
                   component="img"
                   image={imageUrl}
                   alt={p.name}
@@ -84,11 +85,11 @@ export default function PokemonList() {
       </Grid>
 
       <Stack direction="row" spacing={2} mt={4}>
-        <Button variant="contained" disabled={offset === 0} onClick={handlePrev}>
+        <Button variant="contained" disabled={offset === 0} onClick={handlePrev} data-testid="prev-button">
           PREV
         </Button>
 
-        <Button variant="contained" onClick={handleNext}>
+        <Button variant="contained" onClick={handleNext} data-testid="next-button">
           NEXT
         </Button>
       </Stack>

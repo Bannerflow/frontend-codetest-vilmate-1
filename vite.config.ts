@@ -11,5 +11,10 @@ export default defineConfig({
   },
   server: {
     historyApiFallback: true,
-  }
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./tests/setupTests.ts",
+  },
 });
