@@ -19,21 +19,27 @@ type PokemonListItem = {
 
 export default function PokemonList() {
   const [offset, setOffset] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const limit = 10;
 
   useEffect(() => {
     async function load() {
-      const res = await fetch( `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}` );
-      const data = await res.json();
+      setIsLoading(true);
+      try {
+        const res = await fetch( `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}` );
+        const data = await res.json();
 
-      const detailed = await Promise.all(
-        data.results.map(async (p: PokemonListItem) => {
-          const detailsRes = await fetch(p.url);
-          return (new Pokemon(await detailsRes.json()));
-        })
-      );
-      setPokemons(detailed);
+        const detailed = await Promise.all(
+          data.results.map(async (p: PokemonListItem) => {
+            const detailsRes = await fetch(p.url);
+            return (new Pokemon(await detailsRes.json()));
+          })
+        );
+        setPokemons(detailed);
+      } finally {
+        setIsLoading(false);
+      }
     }
     load();
   }, [offset]);
@@ -85,11 +91,11 @@ export default function PokemonList() {
       </Grid>
 
       <Stack direction="row" spacing={2} mt={4}>
-        <Button variant="contained" disabled={offset === 0} onClick={handlePrev} data-testid="prev-button">
+        <Button variant="contained" disabled={offset === 0} loading={isLoading} onClick={handlePrev} data-testid="prev-button">
           PREV
         </Button>
 
-        <Button variant="contained" onClick={handleNext} data-testid="next-button">
+        <Button variant="contained" loading={isLoading} onClick={handleNext} data-testid="next-button">
           NEXT
         </Button>
       </Stack>
