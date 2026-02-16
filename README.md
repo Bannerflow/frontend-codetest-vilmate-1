@@ -35,3 +35,19 @@ You have been invited as an outside collaborator in this repository.
 Please send the code test to us by:
 * Create a new branch in this repository
 * Create a pull request from that branch to the main branch
+
+## Install dependencies
+
+`npm -i`
+
+## Run app on the local dev server
+
+`npm run dev`
+
+## Run tests
+
+`npm run test`
+
+## Build for production
+
+`npm run build`
